@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/animatedIcn_ex.dart';
 import '../widgets/crossFade_ex.dart';
 import '../widgets/expansionTi.dart';
 import '../widgets/choice_ex.dart';
@@ -13,13 +14,23 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    animationController = AnimationController(
+        duration: const Duration(seconds: 1), vsync: this);
+    super.initState();
+  }
+
   @override
   int _currentIndex = 0;
   bool isSelectet = false;
 
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text("Search"),
         actions: [
@@ -39,12 +50,15 @@ class _HomeState extends State<Home> {
             buildFittedBox(),
             buildChoiceChip(isSelected: isSelectet),
             buildExpansionTile(),
-            buildAnimatedCrossFade(isSelected: isSelectet,)
+            buildAnimatedCrossFade(
+              isSelected: isSelectet,
+            ),
+            buildAnimatedIcon(isSelected: isSelectet,animationController: animationController,)
           ],
         ),
       ),
     );
   }
 
-  
+
 }
