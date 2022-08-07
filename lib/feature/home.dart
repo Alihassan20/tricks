@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/animatedContiner_ex.dart';
 import '../widgets/animatedIcn_ex.dart';
 import '../widgets/crossFade_ex.dart';
 import '../widgets/expansionTi.dart';
@@ -32,6 +33,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text("Search"),
         actions: [
           IconButton(
@@ -53,12 +55,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             buildAnimatedCrossFade(
               isSelected: isSelectet,
             ),
-            buildAnimatedIcon(isSelected: isSelectet,animationController: animationController,)
+            buildAnimatedIcon(isSelected: isSelectet,
+              animationController: animationController,),
+            BuildAnimatedContainer(isSelectet: isSelectet,)
           ],
         ),
       ),
     );
   }
+
+
 
 
 }
